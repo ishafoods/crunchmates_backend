@@ -39,6 +39,6 @@ app.use((_request, response) => response.status(404).json({ message: 'Route not 
 app.use(errorHandler)
 
 await connectDatabase()
-app.listen(config.port, () => console.log(`Crunchmates API listening on http://localhost:${config.port}`))
+// app.listen(config.port, () => console.log(`Crunchmates API listening on http://localhost:${config.port}`))
 
 export default app;
