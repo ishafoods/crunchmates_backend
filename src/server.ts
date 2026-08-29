@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import helmet from 'helmet'
+import helmet from "helmet"
 import morgan from 'morgan'
 import { connectDatabase } from './db.js'
 import { config } from './config.js'
@@ -38,3 +38,5 @@ app.use(errorHandler)
 
 await connectDatabase()
 app.listen(config.port, () => console.log(`Crunchmates API listening on http://localhost:${config.port}`))
+
+export default app;
