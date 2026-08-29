@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import helmet from "helmet"
+import helmet from 'helmet'
 import morgan from 'morgan'
 import { connectDatabase } from './db.js'
 import { config } from './config.js'
@@ -15,7 +15,9 @@ import { Product, SiteContent } from './models.js'
 
 const app = express()
 
-app.use(helmet())
+const _helmet = (helmet as any)?.default ?? helmet
+
+app.use(_helmet())
 app.use(cors({ origin: config.frontendOrigin }))
 app.use(express.json({ limit: '10mb' }))
 app.use(morgan('dev'))
