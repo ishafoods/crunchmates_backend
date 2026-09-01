@@ -145,8 +145,10 @@ export const Order = mongoose.model(
     {
       id: { type: String, required: true, unique: true },
       customerId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+      ownerKey: { type: String, index: true },
       customerName: { type: String, required: true },
       customerEmail: { type: String, required: true, lowercase: true },
+      customerPhone: { type: String, required: true },
       address: { type: String, required: true },
       city: { type: String, required: true },
       status: {
@@ -157,6 +159,20 @@ export const Order = mongoose.model(
       createdAt: { type: Date, default: Date.now },
       items: [orderItemSchema],
       total: { type: Number, required: true, min: 0 },
+      currency: { type: String, default: "INR" },
+      paymentMethod: {
+        type: String,
+        enum: ["razorpay", "cod"],
+        default: "razorpay",
+      },
+      paymentStatus: {
+        type: String,
+        enum: ["pending", "paid", "failed"],
+        default: "pending",
+      },
+      razorpayOrderId: { type: String, index: true },
+      razorpayPaymentId: String,
+      razorpaySignature: String,
     },
     { timestamps: true },
   ),
