@@ -9,7 +9,7 @@ contentRouter.get('/', async (_request, response) => {
   response.json(content)
 })
 contentRouter.patch('/', requireAuth('admin'), async (request, response) => {
-  const allowed = ['announcement', 'heroTitle', 'heroSubtitle', 'heroEyebrow', 'primaryCta', 'secondaryCta', 'storyTitle', 'storyText', 'stats', 'showcaseImages', 'blocks']
+  const allowed = ['announcement', 'heroTitle', 'heroSubtitle', 'heroEyebrow', 'primaryCta', 'secondaryCta', 'storyTitle', 'storyText', 'stats', 'promoSlides', 'showcaseImages', 'blocks']
   const update = Object.fromEntries(Object.entries(request.body).filter(([key]) => allowed.includes(key)))
   const content = await SiteContent.findOneAndUpdate({ key: 'main' }, { $set: update }, { new: true, upsert: true, runValidators: true })
   response.json(content)

@@ -25,6 +25,15 @@ const showcaseImageSchema = new Schema(
   },
   { _id: false },
 );
+const promoSlideSchema = new Schema(
+  {
+    id: { type: String, required: true },
+    image: { type: String, required: true },
+    title: { type: String, required: true },
+    subtitle: { type: String, required: true },
+  },
+  { _id: false },
+);
 const blockSchema = new Schema(
   {
     id: { type: String, required: true },
@@ -76,6 +85,7 @@ export const SiteContent = mongoose.model(
       storyTitle: String,
       storyText: String,
       stats: [statsSchema],
+      promoSlides: [promoSlideSchema],
       showcaseImages: [showcaseImageSchema],
       blocks: [blockSchema],
       spiceMeterTitle: String,
